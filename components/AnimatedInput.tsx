@@ -36,22 +36,22 @@ export default function AnimatedInput({
     }
   }, [error]);
 
-  const baseClasses = "relative transition-all duration-300 ease-out";
+  const baseClasses = "transition-all duration-300 ease-out flex items-center flex-col gap-3";
   const inputClasses = `
-    w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border-2 rounded-xl
+    w-full px-4 py-3 bg-slate-50 border-2 rounded-xl
     outline-none transition-all duration-300 ease-out
-    text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500
+    text-slate-900 placeholder-slate-400
     focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500
-    focus:bg-white dark:focus:bg-slate-700
+    focus:bg-white
     disabled:opacity-50 disabled:cursor-not-allowed
-    ${error ? 'border-red-500 animate-shake' : 'border-slate-200 dark:border-slate-700'}
+    ${error ? 'border-red-500 animate-shake' : 'border-slate-200'}
     ${isFocused ? 'shadow-lg shadow-blue-500/20 -translate-y-1' : 'shadow-sm'}
   `;
 
   return (
     <div className={`${baseClasses} ${className}`}>
       {label && (
-        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">
+        <label className="block text-sm font-medium text-slate-700 transition-colors duration-300">
           {label}
         </label>
       )}
@@ -65,6 +65,7 @@ export default function AnimatedInput({
         }}
         placeholder={placeholder}
         disabled={disabled}
+        autoFocus
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className={inputClasses}
@@ -72,7 +73,7 @@ export default function AnimatedInput({
       
       {/* Error message with animation */}
       {error && (
-        <div className="absolute -bottom-6 left-0 text-xs text-red-500 dark:text-red-400 animate-slide-up">
+        <div className="text-xs text-red-500 animate-slide-up">
           {error}
         </div>
       )}

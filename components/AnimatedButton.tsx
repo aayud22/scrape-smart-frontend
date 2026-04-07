@@ -24,8 +24,8 @@ export default function AnimatedButton({
   
   const variantClasses = {
     primary: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95",
-    secondary: "bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:shadow-md hover:-translate-y-1 active:scale-95",
-    ghost: "bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 hover:shadow-sm hover:-translate-y-1 active:scale-95"
+    secondary: "bg-slate-100 hover:bg-slate-200 text-slate-700 hover:shadow-md hover:-translate-y-1 active:scale-95",
+    ghost: "bg-transparent hover:bg-slate-100 text-slate-600 hover:shadow-sm hover:-translate-y-1 active:scale-95"
   };
 
   const sizeClasses = {

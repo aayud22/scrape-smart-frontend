@@ -28,11 +28,11 @@ export default function ChatMessage({ message, index }: ChatMessageProps) {
         {/* Avatar */}
         <div className="shrink-0 mt-0.5 animate-scale-in">
           {isUser ? (
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700 shadow-sm ring-1 ring-slate-200/60 dark:ring-slate-700/60 flex items-center justify-center">
-              <span className="text-slate-700 dark:text-slate-200 text-sm font-semibold">You</span>
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 shadow-sm ring-1 ring-slate-200/60 flex items-center justify-center">
+              <span className="text-slate-700 text-sm font-semibold">You</span>
             </div>
           ) : (
-            <div className="w-10 h-10 rounded-2xl bg-linear-to-br from-indigo-500 to-blue-600 dark:from-indigo-400 dark:to-blue-500 shadow-lg shadow-blue-500/20 ring-1 ring-white/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-2xl bg-linear-to-br from-indigo-500 to-blue-600 shadow-lg shadow-blue-500/20 ring-1 ring-white/10 flex items-center justify-center">
               <div className="w-5 h-5 text-white">
                 <Icons.Robot />
               </div>
@@ -44,8 +44,8 @@ export default function ChatMessage({ message, index }: ChatMessageProps) {
         <div className="min-w-0 flex-1">
           {/* Header row */}
           <div className="flex items-center gap-3 mb-2">
-            <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-              {isUser ? "You" : "slothGPT"}
+            <div className="text-sm font-semibold text-slate-900">
+              {isUser ? "You" : "ScrapeSmartAI"}
             </div>
             <div className="text-sm text-slate-400">{timeLabel}</div>
           </div>
@@ -54,12 +54,12 @@ export default function ChatMessage({ message, index }: ChatMessageProps) {
           <div
             className={`w-fit max-w-170 rounded-2xl px-5 py-4 text-[15px] leading-relaxed shadow-sm ring-1 animate-fade-in ${
               isUser
-                ? "bg-slate-100 text-slate-800 ring-slate-200/60 dark:bg-slate-800 dark:text-slate-100 dark:ring-slate-700/60"
-                : "bg-white text-slate-700 ring-slate-200/70 dark:bg-slate-800/60 dark:text-slate-200 dark:ring-slate-700/50"
+                ? "bg-slate-100 text-slate-800 ring-slate-200/60"
+                : "bg-white text-slate-700 ring-slate-200/70"
             }`}
           >
             {message.role === "bot" ? (
-              <div className="prose prose-sm max-w-none prose-slate dark:prose-invert prose-p:my-2 prose-ul:my-2 prose-li:my-0.5">
+              <div className="prose prose-sm max-w-none prose-slate prose-p:my-2 prose-ul:my-2 prose-li:my-0.5">
                 <ReactMarkdown>{message.text}</ReactMarkdown>
               </div>
             ) : (
