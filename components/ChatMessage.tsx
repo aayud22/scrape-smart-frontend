@@ -1,7 +1,7 @@
 "use client";
 
 import { Icons } from "./Icons";
-import ReactMarkdown from "react-markdown";
+import MarkdownRenderer from "./MarkdownRenderer";
 
 interface ChatMessageProps {
   message: {
@@ -58,12 +58,12 @@ export default function ChatMessage({ message, index }: ChatMessageProps) {
                 : "bg-white text-slate-700 ring-slate-200/70"
             }`}
           >
-            {message.role === "bot" ? (
-              <div className="prose prose-sm max-w-none prose-slate prose-p:my-2 prose-ul:my-2 prose-li:my-0.5">
-                <ReactMarkdown>{message.text}</ReactMarkdown>
+            {message?.role === "bot" ? (
+              <div className="text-sm">
+                <MarkdownRenderer content={message?.text} />
               </div>
             ) : (
-              <div className="whitespace-pre-wrap wrap-break-word">{message.text}</div>
+              <div className="whitespace-pre-wrap wrap-break-word">{message?.text}</div>
             )}
           </div>
         </div>

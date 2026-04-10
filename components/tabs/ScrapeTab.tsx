@@ -1,4 +1,6 @@
 import React from "react";
+import LoadingState from "../LoadingState";
+import ErrorState from "../ErrorState";
 
 export type ScrapeData = {
   content?: string;
@@ -11,6 +13,7 @@ interface ScrapeTabProps {
   scrapeView: "markdown" | "json";
   setScrapeView: (view: "markdown" | "json") => void;
   handleDownload: (format: "json" | "markdown") => void;
+  error: string;
 }
 
 export default function ScrapeTab({
@@ -19,6 +22,7 @@ export default function ScrapeTab({
   scrapeView,
   setScrapeView,
   handleDownload,
+  error,
 }: ScrapeTabProps) {
   // Array definition abstracts redundant download buttons logic
   const downloadButtons = [
@@ -29,14 +33,13 @@ export default function ScrapeTab({
   return (
     <div className="animate-fade-in">
       {isScraping ? (
-        <div className="flex flex-col items-center justify-center py-20">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mb-4"></div>
-          <p className="text-slate-500 font-medium">Extracting raw markdown...</p>
-        </div>
+        <LoadingState message="Extracting raw markdown & JSON data..." />
+      ) : error ? (
+        <ErrorState title="Scraping Failed" message={error} />
       ) : scrapeData ? (
         <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 py-3 bg-slate-50 border-b border-slate-200 gap-3">
-            
+
             {/* Dynamic View Toggle Controller */}
             <div className="flex space-x-1 p-1 bg-slate-200/50 rounded-lg shrink-0">
               {[
@@ -46,11 +49,10 @@ export default function ScrapeTab({
                 <button
                   key={toggle.view}
                   onClick={() => setScrapeView(toggle.view as "markdown" | "json")}
-                  className={`flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-md transition-all ${
-                    scrapeView === toggle.view
+                  className={`flex items-center gap-2 px-4 py-1.5 text-sm font-medium rounded-md transition-all ${scrapeView === toggle.view
                       ? "bg-white text-slate-800 shadow-sm border border-slate-200"
                       : "text-slate-500 hover:text-slate-700"
-                  }`}
+                    }`}
                 >
                   {toggle.icon} {toggle.label}
                 </button>
@@ -60,7 +62,7 @@ export default function ScrapeTab({
             {/* Dynamic Action Buttons Rendering Output */}
             <div className="flex items-center gap-2 flex-wrap">
               {downloadButtons.map((btn) => (
-                <button 
+                <button
                   key={btn.format}
                   onClick={() => handleDownload(btn.format)}
                   className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors border border-transparent hover:border-slate-300"
@@ -74,9 +76,9 @@ export default function ScrapeTab({
                 </button>
               ))}
 
-              <button 
+              <button
                 onClick={() => {
-                  const textToCopy = scrapeView === "markdown" 
+                  const textToCopy = scrapeView === "markdown"
                     ? (scrapeData.markdown || "")
                     : JSON.stringify(scrapeData, null, 2);
                   navigator.clipboard.writeText(textToCopy);
@@ -90,8 +92,8 @@ export default function ScrapeTab({
 
           <div className="p-4 overflow-auto max-h-125 min-h-50 bg-white">
             <pre className="text-sm font-mono text-slate-700 whitespace-pre-wrap wrap-break-word leading-relaxed">
-              {scrapeView === "markdown" 
-                ? (scrapeData.markdown || "No markdown content was generated.") 
+              {scrapeView === "markdown"
+                ? (scrapeData.markdown || "No markdown content was generated.")
                 : JSON.stringify(scrapeData, null, 2)
               }
             </pre>

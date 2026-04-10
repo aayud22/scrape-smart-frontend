@@ -1,4 +1,6 @@
 import React from "react";
+import LoadingState from "../LoadingState";
+import ErrorState from "../ErrorState";
 
 export type MapLinksData = {
   url: string;
@@ -8,16 +10,16 @@ export type MapLinksData = {
 interface MapTabProps {
   isMapping: boolean;
   mapLinksData: MapLinksData[] | null;
+  error?: string;
 }
 
-export default function MapTab({ isMapping, mapLinksData }: MapTabProps) {
+export default function MapTab({ isMapping, mapLinksData, error }: MapTabProps) {
   return (
     <div className="animate-fade-in">
       {isMapping ? (
-        <div className="flex flex-col items-center justify-center py-20">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mb-4"></div>
-          <p className="text-slate-500 font-medium">Crawling website for internal links...</p>
-        </div>
+        <LoadingState message="Crawling website for internal links..." />
+      ) : error ? (
+        <ErrorState title="Mapping Error" message={error} />
       ) : mapLinksData ? (
         <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
           <div className="p-6 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
