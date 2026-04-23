@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Sidebar, SidebarItemType } from "./Sidebar";
+import { Sidebar } from "./Sidebar";
 import { BottomNav } from "./BottomNav";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/utils/helpers";
@@ -17,11 +17,13 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useTheme } from "next-themes";
+import { SidebarItemType } from "@/types/common";
+import { Dispatch, SetStateAction } from "react";
 
 interface DashboardShellProps {
   children: React.ReactNode;
   activeTab: SidebarItemType;
-  setActiveTab: (tab: SidebarItemType) => void;
+  setActiveTab: Dispatch<SetStateAction<SidebarItemType>>;
   headerContent?: string;
   isAppActive?: boolean;
   onBack?: () => void;

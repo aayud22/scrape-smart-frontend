@@ -20,11 +20,12 @@ import { useTheme } from "next-themes";
 import { cn } from "@/utils/helpers";
 import { Tooltip } from "@/components/ui/Tooltip";
 
-export type SidebarItemType = "chat" | "seo" | "scrape" | "map" | "pages" | "search";
+import { SidebarItemType } from "@/types/common";
+import { Dispatch, SetStateAction } from "react";
 
 interface SidebarProps {
   activeTab: SidebarItemType;
-  setActiveTab: (tab: SidebarItemType) => void;
+  setActiveTab: Dispatch<SetStateAction<SidebarItemType>>;
   isCollapsed: boolean;
   setIsCollapsed: (collapsed: boolean) => void;
   onNewExtraction?: () => void;

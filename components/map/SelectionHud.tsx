@@ -2,15 +2,7 @@ import React from "react";
 import { X, Target, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface SelectedNode {
-  id: string;
-  data: {
-    label?: string;
-    url?: string;
-    title?: string;
-    [key: string]: unknown;
-  };
-}
+import { SelectedNode } from "@/types/map";
 
 interface SelectionHudProps {
   selectedNodes: SelectedNode[];

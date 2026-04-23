@@ -4,7 +4,7 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/utils/helpers";
 
-type TooltipSide = "top" | "right" | "bottom" | "left";
+import { TooltipSide } from "@/types/common";
 
 interface TooltipProps {
   children: React.ReactElement;

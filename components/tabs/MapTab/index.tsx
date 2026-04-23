@@ -20,7 +20,7 @@ import { MapCanvas } from "./MapCanvas";
 import LoadingState from "@/components/LoadingState";
 import ErrorState from "@/components/ErrorState";
 
-export type MapLinksData = { url: string; title: string };
+import { MapLinksData, InteractionMode } from "@/types/map";
 
 interface MapTabProps {
   isMapping: boolean;
@@ -30,7 +30,7 @@ interface MapTabProps {
 
 export default function MapTab({ isMapping, mapLinksData, error }: MapTabProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [interactionMode, setInteractionMode] = useState<"select" | "pan">(
+  const [interactionMode, setInteractionMode] = useState<InteractionMode>(
     "pan"
   );
   const [showPanel, setShowPanel] = useState(true);

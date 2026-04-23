@@ -3,18 +3,10 @@ import { Handle, Position, NodeProps, Node } from "@xyflow/react";
 import { Folder, ExternalLink, Globe } from "lucide-react";
 import { cn } from "@/utils/helpers";
 
-export type ArchitectureNodeData = {
-  label: string;
-  url: string;
-  title: string;
-  linksCount: number;
-  status: number;
-  isHighlighted: boolean;
-  isRoot?: boolean;
-};
+import { ArchitectureNodeData } from "@/types/map";
 
 const ArchitectureNode = ({ data, selected }: NodeProps<Node>) => {
-  const nodeData = data as ArchitectureNodeData;
+  const nodeData = data as unknown as ArchitectureNodeData;
   const isRoot = nodeData.isRoot;
 
   return (

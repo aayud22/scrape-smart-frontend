@@ -14,24 +14,14 @@ import {
 import { getLayoutedElements } from "@/utils/mapLayout";
 import ArchitectureNode from "@/components/map/ArchitectureNode";
 import SelectionHud from "@/components/map/SelectionHud";
-import type { MapLinksData } from "./index";
-
-interface CustomNodeData {
-  label: string;
-  url: string;
-  title: string;
-  linksCount: number;
-  isHighlighted: boolean;
-  isRoot: boolean;
-  [key: string]: unknown;
-}
+import { MapLinksData, CustomNodeData, InteractionMode } from "@/types/map";
 
 type CustomNode = Node<CustomNodeData>;
 
 interface MapCanvasProps {
   mapLinksData: MapLinksData[];
   searchQuery: string;
-  interactionMode: "select" | "pan";
+  interactionMode: InteractionMode;
   selectedUrl: string | null;
   onInit: (instance: ReactFlowInstance) => void;
 }

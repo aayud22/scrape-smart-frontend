@@ -12,29 +12,13 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { cn } from "@/utils/helpers";
-import type { MapLinksData } from "@/components/tabs/MapTab";
+import { MapLinksData, GroupedNode, NodeGroup } from "@/types/map";
 
 interface DirectoryPanelProps {
   mapLinksData: MapLinksData[];
   searchQuery: string;
   selectedUrl?: string | null;
   onNodeSelect?: (url: string) => void;
-}
-
-interface GroupedNode {
-  id: string;
-  label: string;
-  url: string;
-  title: string;
-  path: string;
-  status: "synced" | "pending" | "error";
-}
-
-interface NodeGroup {
-  name: string;
-  icon: React.ElementType;
-  nodes: GroupedNode[];
-  isLocked?: boolean;
 }
 
 export default function DirectoryPanel({

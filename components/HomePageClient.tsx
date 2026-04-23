@@ -1,27 +1,30 @@
 "use client";
 
 import { Paperclip, ArrowUp } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Dispatch, SetStateAction } from "react";
 import { getErrorMessage, postJson } from "@/utils/api";
 import { isValidUrl, cn, normalizeDomainInput } from "@/utils/helpers";
-import ChatTab, { ChatItem } from "@/components/tabs/ChatTab";
-import SeoTab, { SeoData } from "@/components/tabs/SeoTab";
-import ScrapeTab, { ScrapeData } from "@/components/tabs/ScrapeTab";
-import MapTab, { MapLinksData } from "@/components/tabs/MapTab";
+import { DashboardShell } from "@/components/layout/DashboardShell";
+import { LandingHero } from "@/components/landing/LandingHero";
+import ChatTab from "@/components/tabs/ChatTab";
+import SeoTab from "@/components/tabs/SeoTab";
+import ScrapeTab from "@/components/tabs/ScrapeTab";
+import MapTab from "@/components/tabs/MapTab";
 import PagesTab from "./tabs/PagesTab";
 import SearchTab from "./tabs/SearchTab";
 import ErrorState from "./ErrorState";
-import { DashboardShell } from "@/components/layout/DashboardShell";
-import { SidebarItemType } from "@/components/layout/Sidebar";
-import { LandingHero } from "@/components/landing/LandingHero";
+import { SidebarItemType } from "@/types/common";
+import { ChatItem } from "@/types/chat";
+import { SeoData } from "@/types/seo";
+import { ScrapeData, ScrapeView } from "@/types/scrape";
+import { MapLinksData } from "@/types/map";
+import { 
+  ScoreResponse, 
+  MapResponse, 
+  ScrapeResponse, 
+  ChatResponse 
+} from "@/types/api";
 
-type ScrapeView = "markdown" | "json" | "table";
-type ApiStatus = "success" | "error";
-
-type ScoreResponse = SeoData & { status: ApiStatus };
-type MapResponse = { status: ApiStatus; links: MapLinksData[] };
-type ScrapeResponse = ScrapeData & { status: ApiStatus };
-type ChatResponse = { status: ApiStatus; bot_reply: string };
 
 const SUGGESTED_QUESTIONS = [
   "Provide a brief summary of this website.",
@@ -128,7 +131,8 @@ export default function HomePageClient() {
     finally { setIsLoading(false); }
   };
 
-  const handleTabChange = (tab: SidebarItemType) => {
+  const handleTabChange: Dispatch<SetStateAction<SidebarItemType>> = (value) => {
+    const tab = typeof value === 'function' ? (value as (prev: SidebarItemType) => SidebarItemType)(activeTab) : value;
     setActiveTab(tab);
     if ((tab === "map" || tab === "pages") && url) void fetchMapLinks(url);
     if (tab === "scrape" && url) void fetchScrapeData(url);

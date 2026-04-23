@@ -2,11 +2,13 @@ import React from "react";
 import { CheckCircle2, AlertCircle, XCircle } from "lucide-react";
 import { cn } from "@/utils/helpers";
 
+import { AuditStatus } from "@/types/seo";
+
 interface AuditCardProps {
   icon: React.ElementType;
   title: string;
   content: string;
-  status: "passed" | "warning" | "error";
+  status: AuditStatus;
   extra?: string;
 }
 

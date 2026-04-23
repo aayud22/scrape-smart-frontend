@@ -8,9 +8,8 @@ import { SearchResultCard } from "../ui/SearchResultCard";
 import { motion, AnimatePresence } from "framer-motion";
 import { Pagination } from "../ui/Pagination";
 
-type SearchResult = { href: string; title: string; body: string; };
-type SearchResponse = { status: "success" | "error"; results: SearchResult[]; };
-type SearchCategory = "ALL" | "NEWS" | "IMAGES" | "VIDEOS";
+import { SearchResult, SearchResponse } from "@/types/api";
+import { SearchCategory } from "@/types/common";
 const ENGINES = ["Google SERP", "Bing Search", "DuckDuckGo", "Brave Search"];
 
 export default function SearchTab() {

@@ -1,14 +1,7 @@
 import React from "react";
 import { cn } from "@/utils/helpers";
 
-export interface Column<T> {
-  header: string;
-  accessorKey?: keyof T;
-  cell?: (item: T) => React.ReactNode;
-  headerClassName?: string;
-  cellClassName?: string;
-  align?: "left" | "right" | "center";
-}
+import { Column } from "@/types/ui";
 
 interface DataTableProps<T> {
   columns: Column<T>[];

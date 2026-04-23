@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, Dispatch, SetStateAction } from "react";
 import LoadingState from "../LoadingState";
 import ErrorState from "../ErrorState";
 import { 
@@ -13,17 +13,13 @@ import {
   ExternalLink
 } from "lucide-react";
 import { cn } from "@/utils/helpers";
-
-export type ScrapeData = {
-  content?: string;
-  markdown?: string;
-};
+import { ScrapeData, ScrapeView } from "@/types/scrape";
 
 interface ScrapeTabProps {
   isScraping: boolean;
   scrapeData: ScrapeData | null;
-  scrapeView: "markdown" | "json" | "table";
-  setScrapeView: (view: "markdown" | "json" | "table") => void;
+  scrapeView: ScrapeView;
+  setScrapeView: Dispatch<SetStateAction<ScrapeView>>;
   handleDownload: (format: "json" | "markdown") => void;
   error: string;
   targetUrl?: string;
@@ -166,7 +162,7 @@ export default function ScrapeTab({
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setScrapeView(tab.id as "markdown" | "json" | "table")}
+              onClick={() => setScrapeView(tab.id as ScrapeView)}
               className={cn(
                 "pb-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest sm:tracking-[0.15em] flex items-center gap-2 transition-all relative cursor-pointer outline-none shrink-0",
                 scrapeView === tab.id 

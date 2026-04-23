@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from "react";
 import LoadingState from "@/components/LoadingState";
-import type { MapLinksData } from "@/components/tabs/MapTab";
 import Image from "next/image";
+import { MapLinksData } from "@/types/map";
+import { Column } from "@/types/ui";
 import { 
   Search, 
   SlidersHorizontal, 
@@ -16,7 +17,7 @@ import {
   ImageOff
 } from "lucide-react";
 import { cn } from "@/utils/helpers";
-import { DataTable, Column } from "@/components/ui/DataTable";
+import { DataTable } from "@/components/ui/DataTable";
 import { Pagination } from "@/components/ui/Pagination";
 
 interface PagesTabProps {

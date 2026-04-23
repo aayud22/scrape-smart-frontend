@@ -10,11 +10,12 @@ import {
   Search,
 } from "lucide-react";
 import { cn } from "@/utils/helpers";
-import { SidebarItemType } from "./Sidebar";
+import { SidebarItemType } from "@/types/common";
+import { Dispatch, SetStateAction } from "react";
 
 interface BottomNavProps {
   activeTab: SidebarItemType;
-  setActiveTab: (tab: SidebarItemType) => void;
+  setActiveTab: Dispatch<SetStateAction<SidebarItemType>>;
 }
 
 const NAV_ITEMS = [

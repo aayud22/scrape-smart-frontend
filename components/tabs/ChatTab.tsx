@@ -3,13 +3,7 @@ import ChatMessage from "@/components/ChatMessage";
 import LoadingIndicator from "@/components/LoadingIndicator";
 import { MessageSquarePlus } from "lucide-react";
 
-export type ChatRole = "user" | "bot";
-
-export type ChatItem = {
-  role: ChatRole;
-  text: string;
-  timestamp: number;
-};
+import { ChatRole, ChatItem } from "@/types/chat";
 
 interface ChatTabProps {
   chatHistory: ChatItem[];

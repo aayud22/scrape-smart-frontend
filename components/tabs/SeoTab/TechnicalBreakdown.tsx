@@ -2,12 +2,7 @@ import React from "react";
 import { BarChart3, Type, FileText, Layout, Image as ImageIcon } from "lucide-react";
 import { AuditCard } from "./AuditCard";
 
-export interface TechnicalData {
-  title: { content: string; status: "passed" | "warning" | "error" };
-  meta: { content: string; status: "passed" | "warning" | "error" };
-  headings: { content: string; status: "passed" | "warning" | "error" };
-  images: { content: string; status: "passed" | "warning" | "error" };
-}
+import { TechnicalData } from "@/types/seo";
 
 interface TechnicalBreakdownProps {
   parsedData: TechnicalData | null;

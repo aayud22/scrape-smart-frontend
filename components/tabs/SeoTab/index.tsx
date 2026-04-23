@@ -1,7 +1,9 @@
 import React, { useState, useMemo, useRef } from "react";
 import LoadingState from "@/components/LoadingState";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
-import type { ScrapeData } from "@/components/tabs/ScrapeTab";
+import { ScrapeData } from "@/types/scrape";
+import { SeoData } from "@/types/seo";
+import { ChatResponse } from "@/types/api";
 import { getErrorMessage, postJson } from "@/utils/api";
 import { 
   RotateCcw,
@@ -17,11 +19,6 @@ import { TechnicalBreakdown } from "./TechnicalBreakdown";
 import { KeywordContext } from "./KeywordContext";
 import SocialPreview from "@/components/SocialPreview";
 
-export interface SeoData {
-  seo_score: number;
-  details: string[];
-}
-
 interface SeoTabProps {
   isAnalyzing: boolean;
   seoScoreData: SeoData | null;
@@ -32,10 +29,6 @@ interface SeoTabProps {
   onReAnalyze?: () => void;
 }
 
-type ChatResponse = {
-  status: "success" | "error";
-  bot_reply: string;
-};
 
 type KeywordStat = {
   word: string;
