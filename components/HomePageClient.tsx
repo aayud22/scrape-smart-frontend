@@ -15,7 +15,7 @@ import { DashboardShell } from "@/components/layout/DashboardShell";
 import { SidebarItemType } from "@/components/layout/Sidebar";
 import { LandingHero } from "@/components/landing/LandingHero";
 
-type ScrapeView = "markdown" | "json";
+type ScrapeView = "markdown" | "json" | "table";
 type ApiStatus = "success" | "error";
 
 type ScoreResponse = SeoData & { status: ApiStatus };
@@ -167,7 +167,7 @@ export default function HomePageClient() {
               isScraping={isScraping} 
               scrapeData={scrapeData} 
               scrapeView={scrapeView} 
-              setScrapeView={setScrapeView as (v: "markdown" | "json" | "table") => void} 
+              setScrapeView={setScrapeView} 
               handleDownload={handleDownload} 
               error={scrapeError} 
               targetUrl={url}
@@ -210,7 +210,7 @@ export default function HomePageClient() {
                     disabled={isLoading || !question.trim()} 
                     className="w-10 h-10 bg-primary hover:brightness-110 text-primary-foreground rounded-full transition-all flex items-center justify-center disabled:opacity-20 cursor-pointer disabled:cursor-not-allowed shadow-lg shadow-primary/20"
                   >
-                    <ArrowUp className="w-4 h-4 stroke-[3]" />
+                    <ArrowUp className="w-4 h-4 stroke-3" />
                   </button>
                 </div>
                 

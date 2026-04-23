@@ -145,7 +145,7 @@ export default function SearchTab() {
         ) : results && results.length === 0 ? (
           <div className="text-center py-24 bg-card/30 rounded-[3rem] border border-dashed border-border/50">
             <h3 className="text-xl font-black text-muted-foreground/20 uppercase tracking-tighter italic">Zero matches detected in local sector archives</h3>
-            <p className="text-xs font-bold text-muted-foreground/10 uppercase tracking-widest mt-2 font-mono">Query: "{query}"</p>
+            <p className="text-xs font-bold text-muted-foreground/10 uppercase tracking-widest mt-2 font-mono">Query: &quot;{query}&quot;</p>
           </div>
         ) : (
           <div className="text-center py-24 group">

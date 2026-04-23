@@ -10,8 +10,7 @@ import {
   FileText, 
   Table as TableIcon,
   Maximize2,
-  ExternalLink,
-  MoreHorizontal
+  ExternalLink
 } from "lucide-react";
 import { cn } from "@/utils/helpers";
 
@@ -48,7 +47,7 @@ const ConfidenceDots = ({ percentage }: { percentage: number }) => {
   );
 };
 
-const DataTable = ({ data }: { data: any }) => {
+const DataTable = ({ data }: { data: ScrapeData | null }) => {
   const tableRows = useMemo(() => {
     // Basic extraction of key-value pairs for preview
     // If it's markdown, we try to show some inferred structure or just the sections
@@ -167,7 +166,7 @@ export default function ScrapeTab({
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setScrapeView(tab.id as any)}
+              onClick={() => setScrapeView(tab.id as "markdown" | "json" | "table")}
               className={cn(
                 "pb-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest sm:tracking-[0.15em] flex items-center gap-2 transition-all relative cursor-pointer outline-none shrink-0",
                 scrapeView === tab.id 
@@ -216,7 +215,7 @@ export default function ScrapeTab({
                     {isCopied ? "COPIED" : "COPY"}
                   </button>
                   <button 
-                    onClick={() => handleDownload(scrapeView as any)}
+                    onClick={() => handleDownload(scrapeView as "json" | "markdown")}
                     className="w-max flex items-center justify-center gap-2 px-3 sm:px-4 py-1.5 h-7 sm:h-8 bg-primary text-primary-foreground font-black text-[9px] sm:text-[10px] uppercase tracking-wider rounded-xl hover:brightness-110 transition-all cursor-pointer shadow-lg shadow-primary/20"
                   >
                     <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5" />

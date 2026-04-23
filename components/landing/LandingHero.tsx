@@ -3,16 +3,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Globe, 
   ArrowRight, 
-  Zap, 
-  Shield, 
-  Search, 
-  MessageSquare, 
   ChevronDown,
   Cpu,
-  Lock,
-  RefreshCw,
   Check,
   Moon,
   Sun
@@ -43,14 +36,13 @@ export function LandingHero({
   normalizeDomainInput,
 }: LandingHeroProps) {
   const [isProtocolOpen, setIsProtocolOpen] = useState(false);
-  const [isCaptchaEnabled, setIsCaptchaEnabled] = useState(true);
-  const [isProxyEnabled, setIsProxyEnabled] = useState(true);
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     inputRef.current?.focus();
   }, []);
@@ -166,7 +158,7 @@ export function LandingHero({
                       {["https://", "http://"].map((p) => (
                         <button 
                           key={p}
-                          onClick={(e) => { e.stopPropagation(); setProtocol(p as any); setIsProtocolOpen(false); inputRef.current?.focus(); }}
+                          onClick={(e) => { e.stopPropagation(); setProtocol(p as "https://" | "http://"); setIsProtocolOpen(false); inputRef.current?.focus(); }}
                           className={cn("w-full text-left px-4 py-2 text-sm font-bold transition-colors", protocol === p ? "text-primary" : "hover:bg-accent")}
                         >
                           {p}

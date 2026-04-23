@@ -57,11 +57,12 @@ const ConditionalTooltip = ({
   );
 };
 
-export function Sidebar({ activeTab, setActiveTab, isCollapsed, setIsCollapsed, onNewExtraction }: SidebarProps) {
+export function Sidebar({ activeTab, setActiveTab, isCollapsed, onNewExtraction }: SidebarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

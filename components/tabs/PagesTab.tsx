@@ -101,7 +101,7 @@ export default function PagesTab({ isMapping, mapLinksData }: PagesTabProps) {
       return {
         ...page,
         status: statuses[idx % statuses.length],
-        loadTime: Math.floor(Math.random() * 200) + 50,
+        loadTime: ((idx * 13) % 200) + 50,
         titleLength: page.title.length,
         path: new URL(page.url).pathname || page.url
       };
@@ -191,7 +191,7 @@ export default function PagesTab({ isMapping, mapLinksData }: PagesTabProps) {
         </div>
         <div className="space-y-1">
           <h3 className="text-xl font-black uppercase tracking-widest">Global Index Empty</h3>
-          <p className="text-sm text-muted-foreground/50 max-w-xs">Scan the domain in the "Map Links" tab to build your pages inventory.</p>
+          <p className="text-sm text-muted-foreground/50 max-w-xs">Scan the domain in the &quot;Map Links&quot; tab to build your pages inventory.</p>
         </div>
       </div>
     );

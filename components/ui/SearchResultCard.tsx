@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link as LinkIcon, ExternalLink, Activity, BarChart3, Layers } from "lucide-react";
-import { cn } from "@/utils/helpers";
 
 interface SearchResultCardProps {
   href: string;
@@ -15,11 +14,17 @@ interface SearchResultCardProps {
 
 export function SearchResultCard({ href, title, body, metrics }: SearchResultCardProps) {
   // Default mock metrics if not provided
-  const displayMetrics = metrics || {
-    da: Math.floor(Math.random() * 40) + 50,
-    pa: Math.floor(Math.random() * 30) + 40,
-    backlinks: (Math.floor(Math.random() * 50) + 10) + "K"
-  };
+  const displayMetrics = useMemo(() => {
+    if (metrics) return metrics;
+    
+    // Stable pseudo-random generation based on href length/content
+    const seed = href.length + (href.charCodeAt(0) || 0);
+    return {
+      da: (seed % 40) + 50,
+      pa: ((seed * 1.5) % 30) + 40,
+      backlinks: ((seed * 2) % 50) + 10 + "K"
+    };
+  }, [href, metrics]);
 
   return (
     <div className="group p-6 bg-card/40 backdrop-blur-xl border border-border/50 rounded-2xl hover:border-primary/50 hover:bg-card/60 transition-all duration-300 shadow-sm relative overflow-hidden">

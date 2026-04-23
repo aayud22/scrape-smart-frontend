@@ -13,7 +13,6 @@ import {
   Moon,
   Globe,
   RefreshCw,
-  MoreHorizontal,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";

@@ -1,10 +1,19 @@
 import React from "react";
-import { X, Target, Link as LinkIcon, ExternalLink } from "lucide-react";
+import { X, Target, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/utils/helpers";
+
+interface SelectedNode {
+  id: string;
+  data: {
+    label?: string;
+    url?: string;
+    title?: string;
+    [key: string]: unknown;
+  };
+}
 
 interface SelectionHudProps {
-  selectedNodes: any[];
+  selectedNodes: SelectedNode[];
   onClear: () => void;
 }
 
@@ -17,11 +26,11 @@ const SelectionHud = ({ selectedNodes, onClear }: SelectionHudProps) => {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
-        className="fixed bottom-32 left-1/2 -translate-x-1/2 z-[100] w-full max-w-2xl px-4 pointer-events-none"
+        className="fixed bottom-32 left-1/2 -translate-x-1/2 z-100 w-full max-w-2xl px-4 pointer-events-none"
       >
         <div className="bg-card/80 backdrop-blur-3xl border border-border/50 rounded-[2.5rem] shadow-2xl p-6 pointer-events-auto ring-1 ring-white/10 overflow-hidden relative">
           {/* Background Glow */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/50 to-transparent" />
           
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-4">

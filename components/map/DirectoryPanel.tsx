@@ -5,13 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Folder,
   ChevronDown,
-  ChevronRight,
   ExternalLink,
   Lock,
-  Search,
   Archive,
   Globe,
-  Activity,
   TrendingUp,
 } from "lucide-react";
 import { cn } from "@/utils/helpers";

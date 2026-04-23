@@ -1,7 +1,6 @@
 import React, { RefObject } from "react";
 import ChatMessage from "@/components/ChatMessage";
 import LoadingIndicator from "@/components/LoadingIndicator";
-import { cn } from "@/utils/helpers";
 import { MessageSquarePlus } from "lucide-react";
 
 export type ChatRole = "user" | "bot";
@@ -40,7 +39,7 @@ export default function ChatTab({
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-2xl px-4 pt-6">
-            {suggestedQuestions.map((q, idx) => (
+            {suggestedQuestions.map((q) => (
               <button
                 key={q}
                 onClick={() => handleAskQuestion(q)}
