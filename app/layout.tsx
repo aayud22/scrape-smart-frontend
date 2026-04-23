@@ -1,12 +1,6 @@
-import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
 import "./globals.css";
-
-const nunito = Nunito({
-  variable: "--font-nunito",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+import type { Metadata } from "next";
+import AuthSessionProvider from "@/components/providers/AuthSessionProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -38,17 +32,27 @@ export const metadata: Metadata = {
   },
 };
 
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${nunito.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" suppressHydrationWarning className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthSessionProvider>
+            <div className="flex-1">{children}</div>
+          </AuthSessionProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

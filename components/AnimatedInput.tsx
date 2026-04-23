@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface AnimatedInputProps {
   value: string;
@@ -26,15 +26,6 @@ export default function AnimatedInput({
   label
 }: AnimatedInputProps) {
   const [isFocused, setIsFocused] = useState(false);
-  const [hasError, setHasError] = useState(false);
-
-  useEffect(() => {
-    if (error) {
-      setHasError(true);
-      const timer = setTimeout(() => setHasError(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [error]);
 
   const baseClasses = "transition-all duration-300 ease-out flex items-center flex-col gap-3";
   const inputClasses = `

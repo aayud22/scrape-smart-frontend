@@ -1,6 +1,6 @@
 "use client";
 
-import { Icons } from "./Icons";
+import { Cpu } from "lucide-react";
 
 interface LoadingIndicatorProps {
   message?: string;
@@ -8,36 +8,34 @@ interface LoadingIndicatorProps {
 }
 
 export default function LoadingIndicator({ 
-  message = "thinking", 
+  message = "analyzing site", 
   className = "" 
 }: LoadingIndicatorProps) {
   return (
-    <div className={`flex w-full justify-start items-center gap-3 ${className}`}>
+    <div className={`flex w-full justify-start items-center gap-3 ${className} animate-pulse`}>
       {/* Avatar Container */}
       <div className="shrink-0 relative">
-        <div className="w-9 h-9 bg-linear-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25">
-          <div className="w-5 h-5 text-white">
-            <Icons.Robot />
-          </div>
+        <div className="w-8 h-8 bg-[#00D1FF] rounded-lg flex items-center justify-center shadow-lg shadow-[#00D1FF]/20">
+          <Cpu className="w-4 h-4 text-black" />
         </div>
         
         {/* Pulsing Ring */}
-        <div className="absolute inset-0 w-9 h-9 bg-blue-500 rounded-2xl animate-ping opacity-20" />
+        <div className="absolute inset-0 w-8 h-8 bg-[#00D1FF] rounded-lg animate-ping opacity-20" />
       </div>
 
       {/* Message Container */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1">
         {/* Typing Dots Container */}
-        <div className="flex items-center gap-2 px-4 py-3 bg-slate-100 rounded-2xl rounded-bl-sm shadow-sm">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" />
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "0.1s" }} />
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+        <div className="flex items-center gap-2 px-4 py-2 bg-card border border-border rounded-2xl rounded-tl-none shadow-sm">
+          <div className="flex gap-1.5">
+            <div className="w-1.5 h-1.5 bg-[#00D1FF] rounded-full animate-bounce [animation-duration:1s]" />
+            <div className="w-1.5 h-1.5 bg-[#00D1FF] rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.2s]" />
+            <div className="w-1.5 h-1.5 bg-[#00D1FF] rounded-full animate-bounce [animation-duration:1s] [animation-delay:0.4s]" />
           </div>
         </div>
         
         {/* Status Text */}
-        <div className="text-xs text-slate-500 font-medium ml-1">
+        <div className="text-[10px] font-black uppercase tracking-widest text-[#00D1FF]/50 ml-1">
           {message}
         </div>
       </div>
